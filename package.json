@@ -1,0 +1,38 @@
+{
+  "name": "context-assert",
+  "version": "0.1.0",
+  "description": "collection of assertions mostly for user input and configuration definitions, wrapped in a class so that error messages can be conveniently contextualized",
+  "main": "index.js",
+  "engines": {
+    "node": ">=13.2.0"
+  },
+  "scripts": {
+    "commit": "cz",
+    "test": "ava"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/synchronopeia/context-assert.git"
+  },
+  "author": "Darren Anderson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/synchronopeia/context-assert/issues"
+  },
+  "homepage": "https://github.com/synchronopeia/context-assert#readme",
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "devDependencies": {
+    "ava": "3.13.0",
+    "cz-conventional-changelog": "3.3.0",
+    "eslint": "7.11.0",
+    "eslint-config-airbnb-base": "14.2.0",
+    "eslint-plugin-ava": "11.0.0",
+    "eslint-plugin-import": "2.22.1"
+  },
+  "dependencies": {
+  }
+}
