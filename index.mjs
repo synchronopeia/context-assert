@@ -118,15 +118,21 @@ export default class {
   arrayWithRecordId(src, key) {
     this.arrayWithRecordProperty(src, key);
     const list = src.map((ele) => ele[key]);
+    // cannot include non-string
+    let foundItem = list.find((item) => (typeof item !== 'string'));
+    if (foundItem !== undefined) this.fail(ASSERT_ARRAY_WITH_RECORD_ID_FAIL, `${key}: '${foundItem}' is an invalid id (it is not a string)`);
+    // cannot include empty-string
+    foundItem = list.find((item) => (item.length === 0));
+    if (foundItem !== undefined) this.fail(ASSERT_ARRAY_WITH_RECORD_ID_FAIL, `${key}: '${foundItem}' is an invalid id (it is an empty string)`);
     // cannot include whitespace
-    let foundItem = list.find((item) => (item.length !== item.replace(WHITESPACE_REGEX, '').length));
-    if (foundItem) this.fail(ASSERT_ARRAY_WITH_RECORD_ID_FAIL, `${key}: '${foundItem}' is an invalid id (it contains whitespace)`);
+    foundItem = list.find((item) => (item.length !== item.replace(WHITESPACE_REGEX, '').length));
+    if (foundItem !== undefined) this.fail(ASSERT_ARRAY_WITH_RECORD_ID_FAIL, `${key}: '${foundItem}' is an invalid id (it contains whitespace)`);
     // cannot have leading number
     foundItem = list.find((item) => (item.match(LEADING_NUMBER_REGEX)));
-    if (foundItem) this.fail(ASSERT_ARRAY_WITH_RECORD_ID_FAIL, `${key}: '${foundItem}' is an invalid id (it has a leading number)`);
+    if (foundItem !== undefined) this.fail(ASSERT_ARRAY_WITH_RECORD_ID_FAIL, `${key}: '${foundItem}' is an invalid id (it has a leading number)`);
     // cannot be repeated
     foundItem = list.find((item, index) => (list.indexOf(item, index + 1) !== -1));
-    if (foundItem) this.fail(ASSERT_ARRAY_WITH_RECORD_ID_FAIL, `${key}: '${foundItem}' is repeated`);
+    if (foundItem !== undefined) this.fail(ASSERT_ARRAY_WITH_RECORD_ID_FAIL, `${key}: '${foundItem}' is repeated`);
   }
 
   arrayWithOptionalRecordLabel(src, key) {
@@ -134,16 +140,16 @@ export default class {
     const list = src.filter((ele) => Object.prototype.hasOwnProperty.call(ele, key)).map((ele) => ele[key]);
     // disallowed white space (anything but ' ')
     let foundItem = list.find((item) => (item !== item.replace(WHITESPACE_REGEX, ' ')));
-    if (foundItem) this.fail(ASSERT_ARRAY_WITH_OPTIONAL_RECORD_LABEL_FAIL, `${key}: '${foundItem}' includes whitespace that is not a plain space`);
+    if (foundItem !== undefined) this.fail(ASSERT_ARRAY_WITH_OPTIONAL_RECORD_LABEL_FAIL, `${key}: '${foundItem}' includes whitespace that is not a plain space`);
     // consecutive spaces
     foundItem = list.find((item) => (item.length !== item.replace(REPEATED_WHITESPACE_REGEX, ' ').length));
-    if (foundItem) this.fail(ASSERT_ARRAY_WITH_OPTIONAL_RECORD_LABEL_FAIL, `${key}: '${foundItem}' includes consecutive spaces`);
+    if (foundItem !== undefined) this.fail(ASSERT_ARRAY_WITH_OPTIONAL_RECORD_LABEL_FAIL, `${key}: '${foundItem}' includes consecutive spaces`);
     // leading / trailing spaces
     foundItem = list.find((item) => (item.length !== item.trim().length));
-    if (foundItem) this.fail(ASSERT_ARRAY_WITH_OPTIONAL_RECORD_LABEL_FAIL, `${key}: '${foundItem}' includes a leading and/or trailing space`);
+    if (foundItem !== undefined) this.fail(ASSERT_ARRAY_WITH_OPTIONAL_RECORD_LABEL_FAIL, `${key}: '${foundItem}' includes a leading and/or trailing space`);
     // repeated item
     foundItem = list.find((item, index) => (list.indexOf(item, index + 1) !== -1));
-    if (foundItem) this.fail(ASSERT_ARRAY_WITH_OPTIONAL_RECORD_LABEL_FAIL, `'${key}: ${foundItem}' is repeated`);
+    if (foundItem !== undefined) this.fail(ASSERT_ARRAY_WITH_OPTIONAL_RECORD_LABEL_FAIL, `'${key}: ${foundItem}' is repeated`);
     // case-insensitive repeated item
     const lowerCaseList = list.map((item) => item.toLowerCase());
     const foundIndex = lowerCaseList.findIndex((item, index) => (lowerCaseList.indexOf(item, index + 1) !== -1));
