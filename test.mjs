@@ -105,6 +105,8 @@ test('arrayWithRecordProperty', (t) => {
 test('arrayWithRecordId', (t) => {
   assert.setContext('arrayWithRecordId');
   t.notThrows(() => assert.arrayWithRecordId(SCHEMA_DEFS, 'fieldId'));
+  t.throws(() => assert.arrayWithRecordId(SCHEMA_DEFS.concat({ fieldId: null }), 'fieldId')); // null
+  t.throws(() => assert.arrayWithRecordId(SCHEMA_DEFS.concat({ fieldId: 4 }), 'fieldId')); // non-string
   t.throws(() => assert.arrayWithRecordId(SCHEMA_DEFS.concat({ fieldId: 'first name' }), 'fieldId')); // whitespace
   t.throws(() => assert.arrayWithRecordId(SCHEMA_DEFS.concat({ fieldId: '4WheelDrive' }), 'fieldId')); // leading number
   t.throws(() => assert.arrayWithRecordId(SCHEMA_DEFS.concat({ fieldId: 'lastName' }), 'fieldId')); // repeated id
