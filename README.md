@@ -1,6 +1,36 @@
 # Context Assert
 
-Collection of assertions mostly for user input and configuration definitions, wrapped in a class so that error messages can be conveniently contextualized.
+Collection of assertions mostly for user input and configuration definitions, wrapped in a class so that error messages can be contextualized.
+
+## Motivation
+
+This is essentially an __assertion__ version of our "Simple Type and Shape Confirmation Library" [is](https://github.com/synchronopeia/is).
+
+We wrap it in a class so that more detailed error messages can be included on the instance.
+
+### The Grammar
+
+```javascript
+assert.number(null); // throws
+assert.numberOrNull(null);
+assert.string('');
+assert.stringWithSomething(''); // throws
+assert.array([]);
+assert.arrayWithSomething([]); /// throws
+assert.arrayOfNumberValues([2, null]); // throws
+assert.arrayOfNumberOrNullValues([2, null]);
+```
+
+### The Class Instance
+
+Please see "Illustrative Example" below. The ```setContext()``` and ```setDetail()``` methods add two layers of detail to the error messaging.
+
+```javascript
+import ContextAssert from 'context-assert/index.mjs';
+
+const assert = new ContextAssert();
+
+```
 
 ## Requirements
 
