@@ -1,5 +1,5 @@
 {
-  "name": "context-assert",
+  "name": "@synchronopeia/context-assert",
   "version": "0.1.0",
   "description": "collection of assertions mostly for user input and configuration definitions, wrapped in a class so that error messages can be conveniently contextualized",
   "main": "index.js",
@@ -28,8 +28,8 @@
   "devDependencies": {
     "ava": "3.13.0",
     "cz-conventional-changelog": "3.3.0",
-    "eslint": "7.12.1",
-    "eslint-config-airbnb-base": "14.2.0",
+    "eslint": "7.14.0",
+    "eslint-config-airbnb-base": "14.2.1",
     "eslint-plugin-ava": "11.0.0",
     "eslint-plugin-import": "2.22.1"
   },
