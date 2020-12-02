@@ -4,9 +4,9 @@ Collection of assertions mostly for user input and configuration definitions, wr
 
 ## Motivation
 
-This is essentially an __assertion__ version of our "Simple Type and Shape Confirmation Library" [is](https://github.com/synchronopeia/is).
+This is essentially an __assertion__ version of our "Simple Type and Shape Confirmation Library" __is__ [GitHub](https://github.com/synchronopeia/is) [NPM](https://www.npmjs.com/package/@synchronopeia/is).
 
-We wrap it in a class so that more detailed error messages can be included on the instance.
+It's wrapped in a class so that more detailed error messages can be included on the instance.
 
 ### The Grammar
 
@@ -26,7 +26,7 @@ assert.arrayOfNumberOrNullValues([2, null]);
 Please see "Illustrative Example" below. The ```setContext()``` and ```setDetail()``` methods add two layers of detail to the error messaging.
 
 ```javascript
-import ContextAssert from 'context-assert/index.mjs';
+import ContextAssert from '@synchronopeia/context-assert';
 
 const assert = new ContextAssert();
 
@@ -41,11 +41,11 @@ See [Announcing core Node.js support for ECMAScript modules](https://medium.com/
 ## Illustrative Example
 
 ```bash
-npm install https://github.com/synchronopeia/context-assert
+npm install @synchronopeia/context-assert
 ```
 
 ```javascript
-import ContextAssert from 'context-assert/index.mjs';
+import ContextAssert from '@synchronopeia/context-assert';
 
 const assert = new ContextAssert();
 
@@ -79,10 +79,10 @@ const checkSchemaDefs = () => {
 
 assert.setContext('Illustrative Example'); // included in error.message
 checkSchemaDefs();
-
-// In this example, only the last assertion assert.arrayWithRecordId(SCHEMA_DEFS, 'fieldId') fails.
-
-// err.message will be:
-
-// ASSERT_ARRAY_WITH_RECORD_ID_FAIL: expected array of objects with unique string identifer -- assertion context is 'Illustrative Example' (checking schema defs) -- fieldId: 'lastName' is repeated
 ```
+
+In this example, only the last ```assertion assert.arrayWithRecordId(SCHEMA_DEFS, 'fieldId')``` fails.
+
+err.message will be:
+
+```ASSERT_ARRAY_WITH_RECORD_ID_FAIL: expected array of objects with unique string identifer -- assertion context is 'Illustrative Example' (checking schema defs) -- fieldId: 'lastName' is repeated```
