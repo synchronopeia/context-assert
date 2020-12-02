@@ -1,8 +1,8 @@
 {
   "name": "@synchronopeia/context-assert",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "collection of assertions mostly for user input and configuration definitions, wrapped in a class so that error messages can be conveniently contextualized",
-  "main": "index.js",
+  "main": "index.mjs",
   "engines": {
     "node": ">=13.2.0"
   },
